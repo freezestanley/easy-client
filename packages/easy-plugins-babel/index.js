@@ -2,7 +2,8 @@ const path = require('path')
 // module
 module.exports = {
     configureWebpack: config => {
-        config.module.rule('compile')
+        config.module.rules.delete('babel')
+        config.module.rule('babel')
         .exclude.add(/(node_modules|bower_components)/)
         .end()
         .include.add(path.resolve(process.cwd(), './src')).end()

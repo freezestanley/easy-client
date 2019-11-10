@@ -1,7 +1,8 @@
 const path = require('path')
 // less
 module.exports = {
-    configureWebpack: config => {
+    configureWebpack: cfg => {
+        let config = cfg.config
         config.module.rules.delete('sass')
         config.module.rule('sass')
         .test(/\.s[ac]ss$/i)

@@ -1,7 +1,8 @@
 const path = require('path')
 // less
 module.exports = {
-    configureWebpack: config => {
+    configureWebpack: cfg => {
+        let config = cfg.config
         config.module.rules.delete('less')
         config.module.rule('less')
             .test(/\.less$/)

@@ -1,5 +1,6 @@
 module.exports = {
-    configureWebpack: config => {
+    configureWebpack: cfg => {
+        let config = cfg.config
         config.module.rule('images')
         .test(/\.(png|jpg|gif)$/i)
         .use('urlloader')

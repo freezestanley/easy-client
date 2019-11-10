@@ -1,5 +1,6 @@
 module.exports = {
-    configureWebpack: config => {
-        
+    configureWebpack: cfg => {
+        let config = cfg.config
+
     }
 }

@@ -1,10 +1,11 @@
+const path = require('path')
 // module
 module.exports = {
     configureWebpack: config => {
         config.module.rule('compile')
         .exclude.add(/(node_modules|bower_components)/)
         .end()
-        .include.add(path.resolve(cwd, './src')).end()
+        .include.add(path.resolve(process.cwd(), './src')).end()
         .test(/\.js|jsx|mjs$/)
         .use('babel')
         .loader('babel-loader').options({

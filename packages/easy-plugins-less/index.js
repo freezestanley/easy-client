@@ -34,15 +34,35 @@ module.exports = {
             .options({
                 ident: 'postcss',
                 plugins: (loader) => [
-                require('postcss-preset-env')(),
+                require('postcss-preset-env')({
+                    autoprefixer: {
+                      flexbox: 'no-2009',
+                    },
+                    stage: 3,
+                  }),
                 require('postcss-normalize')({ forceImport: true }),
-                require('postcss-cssnext')(),
-                require('postcss-import')({ root: loader.resourcePath }),
+                require('postcss-cssnext')({
+                    features: {
+                      customProperties: {
+                        warnings: false
+                      }
+                    }
+                  }),
                 require('postcss-selector-namespace')({ selfSelector: ':namespace', namespace: `` })
                 ]})
             .end()
             .use('less')
             .loader('less-loader')
+            .end()
+            .use('style-resources-loader')
+            .loader('style-resources-loader')
+            .options({
+                patterns: [
+                    path.resolve(__dirname, 'assets/variables/*.less'),
+                    path.resolve(__dirname, 'assets/variables/*.scss'),
+                ],
+                injector: 'append'
+            })
             .end()
 
         config.plugin('MiniCssExtractPlugin')

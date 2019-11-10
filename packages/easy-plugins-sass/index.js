@@ -1,7 +1,4 @@
 const path = require('path')
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
-const safePostCssParser = require('postcss-safe-parser')
 // less
 module.exports = {
     configureWebpack: config => {
@@ -11,7 +8,7 @@ module.exports = {
        if (config.mode === 'application') {
             config.module.rule('sass')
                 .use('mini')
-                .loader(MiniCssExtractPlugin.loader).options({
+                .loader(require("mini-css-extract-plugin").loader).options({
                 hmr: process.env.NODE_ENV === 'development',
                 fallback: {
                     loader: require.resolve('style-loader'),
@@ -66,14 +63,14 @@ module.exports = {
             .end()
 
         config.plugin('MiniCssExtractPlugin')
-            .use(MiniCssExtractPlugin, [{
+            .use(require("mini-css-extract-plugin"), [{
                 filename: "[name].[contenthash:8].css",
                 chunkFilename: "[name].[contenthash:8].css"
             }]).end()
         .plugin('OptimizeCssAssetsPlugin')
-            .use(OptimizeCssAssetsPlugin, [{ 
+            .use(require('optimize-css-assets-webpack-plugin'), [{ 
                 cssProcessorOptions: { 
-                parser: safePostCssParser
+                parser: require('postcss-safe-parser')
             }}]).end()
 
 

@@ -1,6 +1,6 @@
 {
   "name": "easy-plugins-sass",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -11,8 +11,6 @@
   "license": "ISC",
   "dependencies": {
     "css-loader": "^3.2.0",
-    "sass": "^1.23.3",
-    "sass-loader": "^8.0.0",
     "mini-css-extract-plugin": "^0.8.0",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "postcss-cssnext": "^3.1.0",
@@ -22,6 +20,8 @@
     "postcss-preset-env": "^6.7.0",
     "postcss-safe-parser": "^4.0.1",
     "postcss-selector-namespace": "^3.0.1",
+    "sass": "^1.23.3",
+    "sass-loader": "^8.0.0",
     "style-loader": "^1.0.0"
   }
 }

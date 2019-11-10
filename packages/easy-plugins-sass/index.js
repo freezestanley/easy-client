@@ -7,7 +7,7 @@ module.exports = {
     configureWebpack: config => {
         config.module.rules.delete('sass')
         config.module.rule('sass')
-            .test(/\.less$/)
+        .test(/\.s[ac]ss$/i)
        if (config.mode === 'application') {
             config.module.rule('sass')
                 .use('mini')

@@ -1,22 +1,6 @@
 const path = require('path')
-const ejs = require('ejs')
-const fs = require('fs-extra')
 // module
 module.exports = {
-    configTemplate: (dir) => {
-        Promise.all(
-            [
-              ejs.renderFile(path.join(__dirname, './template/.eslintrc.js'), { 
-                plugin: ['less', 'sass', 'babel', 'images'],// answers.select,
-              })
-            ]
-          ).then((res) => {
-            fs.writeFileSync(
-                `${process.cwd()}/.eslintrc.js`,
-                res[0]
-            )
-          })
-    },
     configureWebpack: cfg => {
         let config = cfg.config
         config.module.rules.delete('babel')
@@ -34,11 +18,6 @@ module.exports = {
                 "@babel/plugin-proposal-object-rest-spread",
                 "@babel/plugin-transform-react-jsx-self"
             ]
-        }).end()
-        .use('eslint-loader')
-        .loader('eslint-loader')
-        .options({
-            formatter: require('eslint-friendly-formatter')
         }).end()
     }
 }

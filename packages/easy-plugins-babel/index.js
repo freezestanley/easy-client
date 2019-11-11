@@ -3,7 +3,7 @@ const ejs = require('ejs')
 const fs = require('fs-extra')
 // module
 module.exports = {
-    configTemplate: () => {
+    configTemplate: (dir) => {
         Promise.all(
             [
               ejs.renderFile(path.join(__dirname, './template/.eslintrc.js'), { 
@@ -12,7 +12,7 @@ module.exports = {
             ]
           ).then((res) => {
             fs.writeFileSync(
-                `${process.cwd()}/${dir}/.eslintrc.js`,
+                `${process.cwd()}/.eslintrc.js`,
                 res[0]
             )
           })

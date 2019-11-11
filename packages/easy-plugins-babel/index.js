@@ -1,5 +1,6 @@
 const path = require('path')
 const ejs = require('ejs')
+const fs = require('fs-extra')
 // module
 module.exports = {
     configTemplate: () => {

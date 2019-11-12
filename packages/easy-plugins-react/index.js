@@ -17,6 +17,15 @@ module.exports = {
         let config = cfg.config
         // devtool
         config.devtool('cheap-module-eval-source-map')
-        
+        config
+            .entry('index')
+                .add('./src/index.js')
+                .end()
+            .output
+                .path(path.resolve(__dirname, '../dist'))
+                .filename('[name].[hash:8].js')
+                // .publicPath()
+                .library('other')
+                .libraryTarget('umd')
     }
 }

@@ -3,12 +3,14 @@ const webpack = require('webpack')
 const path = require('path')
 
 module.exports = {
-    configureWebpack: cfg => {
+    configTemplate: (cfg, config) => {
         cfg.addDependencies([
             {"react": "^16.11.0"},
             {"react-dom": "^16.11.0"},
             {"react-router-dom": "^5.1.2"}
         ])
+    },
+    configureWebpack: cfg => {
         let config = cfg.config
         // devtool
         config.devtool('cheap-module-eval-source-map')

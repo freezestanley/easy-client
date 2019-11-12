@@ -1,7 +1,5 @@
 'use strict'
-const webpack = require('webpack')
 const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
     configTemplate: (cfg, config) => {
@@ -31,7 +29,7 @@ module.exports = {
 
         // plugin
         config.plugin('htmlwebpackplugin')
-        .use(HtmlWebpackPlugin, [
+        .use(require('html-webpack-plugin'), [
         Object.assign(
             {},
             {
@@ -41,6 +39,6 @@ module.exports = {
         )
         ]).end()
         .plugin('HotModuleReplacementPlugin')
-        .use(webpack.HotModuleReplacementPlugin).end()
+        .use(require('webpack').HotModuleReplacementPlugin).end()
     }
 }

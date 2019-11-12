@@ -48,4 +48,11 @@ program
     const result = utils.readerZarc(true)
   })
 
+program
+  .command('dev')
+  .description('静态扫描')
+  .action((e) => {
+    const result = utils.readerZarc(false)
+  })
+
 program.parse(process.argv)

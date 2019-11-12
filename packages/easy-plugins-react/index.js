@@ -1,6 +1,7 @@
 'use strict'
 const webpack = require('webpack')
 const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
     configTemplate: (cfg, config) => {
@@ -27,7 +28,7 @@ module.exports = {
                 // .publicPath()
                 .library('other')
                 .libraryTarget('umd')
-                
+
         // plugin
         config.plugin('htmlwebpackplugin')
         .use(HtmlWebpackPlugin, [

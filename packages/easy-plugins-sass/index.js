@@ -1,6 +1,10 @@
 const path = require('path')
 // less
 module.exports = {
+    configTemplate: (cfg, config) => {
+        const dep = require('./package.json')
+        cfg.addDevDependencies(dep.dependencies)
+    },
     configureWebpack: cfg => {
         let config = cfg.config
         config.module.rules.delete('sass')

@@ -4,6 +4,8 @@ const path = require('path')
 
 module.exports = {
     configTemplate: (cfg, config) => {
+        const dep = require('./package.json')
+        cfg.addDevDependencies(dep.dependencies)
         cfg.addDependencies([
             {"react": "^16.11.0"},
             {"react-dom": "^16.11.0"},

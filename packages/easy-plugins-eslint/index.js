@@ -3,7 +3,9 @@ const ejs = require('ejs')
 const fs = require('fs-extra')
 // module
 module.exports = {
-    configTemplate: (dir) => {
+    configTemplate: (cfg, config) => {
+        const dep = require('./package.json')
+        cfg.addDevDependencies(dep.dependencies)
         Promise.all(
             [
               ejs.renderFile(path.join(__dirname, './template/.eslintrc.js'), { 

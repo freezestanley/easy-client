@@ -36,7 +36,7 @@ module.exports = {
             {},
             {
             inject: true,
-            template: path.resolve(__dirname, './index.html')
+            template: path.resolve(process.cwd(), './index.html')
             }
         )
         ]).end()

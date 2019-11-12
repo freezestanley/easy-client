@@ -27,5 +27,19 @@ module.exports = {
                 // .publicPath()
                 .library('other')
                 .libraryTarget('umd')
+                
+        // plugin
+        config.plugin('htmlwebpackplugin')
+        .use(HtmlWebpackPlugin, [
+        Object.assign(
+            {},
+            {
+            inject: true,
+            template: path.resolve(__dirname, './index.html')
+            }
+        )
+        ]).end()
+        .plugin('HotModuleReplacementPlugin')
+        .use(webpack.HotModuleReplacementPlugin).end()
     }
 }

@@ -79,8 +79,6 @@ module.exports = {
             }}]).end()
 
 
-        console.log('========')
-        console.log(config.toString())
-        console.log('========')
+        // console.log(config.toString())
     }
 }

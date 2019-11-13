@@ -52,6 +52,7 @@ program
   .command('dev')
   .description('静态扫描')
   .action((e) => {
+    
     const result = utils.readerZarc(false)
   })
 

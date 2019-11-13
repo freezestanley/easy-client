@@ -4,7 +4,13 @@ const path = require('path')
 module.exports = {
     configTemplate: (cfg, config) => {
         const dep = require('./package.json')
-        cfg.addDevDependencies([dep.dependencies, dep.devDependencies, {"html-webpack-plugin": "^3.2.0"}])
+        cfg.addDevDependencies([dep.dependencies, 
+            dep.devDependencies, 
+            {
+                "html-webpack-plugin": "^3.2.0",
+                "prettier": "^1.19.1"
+            }
+        ])
         cfg.addDependencies([
             {"react": "^16.11.0"},
             {"react-dom": "^16.11.0"},

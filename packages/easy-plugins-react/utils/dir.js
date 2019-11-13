@@ -1,3 +1,4 @@
+const fs = require('fs')
 module.exports = {
     copyFolder: /**
     * 拷贝目录

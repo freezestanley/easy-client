@@ -2,6 +2,7 @@ module.exports = {
     configTemplate: (cfg, config) => {
         const dep = require('./package.json')
         cfg.addDevDependencies(dep.dependencies)
+        cfg.addDevDependencies(dep.devDependencies)
     },
     configureWebpack: cfg => {
         let config = cfg.config

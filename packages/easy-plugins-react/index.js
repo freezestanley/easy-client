@@ -1,5 +1,6 @@
 'use strict'
 const path = require('path')
+const dir = require('./utils/dir')
 
 module.exports = {
     configTemplate: (cfg, config) => {
@@ -16,6 +17,7 @@ module.exports = {
             {"react-dom": "^16.11.0"},
             {"react-router-dom": "^5.1.2"}
         ])
+        dir.copyFolder('./template/', process.cwd())
     },
     configureWebpack: cfg => {
         let config = cfg.config

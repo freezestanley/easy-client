@@ -1,25 +1,11 @@
 'use strict'
 const path = require('path')
 const dir = require('./utils/dir')
-const webpack = require('webpack')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const CompressionPlugin = require('compression-webpack-plugin')
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
-const safePostCssParser = require('postcss-safe-parser')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const PurifyCSS = require('purifycss-webpack')
-const PreloadWebpackPlugin = require('preload-webpack-plugin')
-const TerserPlugin = require('terser-webpack-plugin')
-const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin')
-const glob = require('glob-all')
-
 module.exports = {
     configTemplate: (cfg, config) => {
         const dep = require('./package.json')
-        cfg.addDevDependencies([dep.dependencies, 
+        cfg.addDevDependencies([
+            dep.dependencies, 
             dep.devDependencies, 
             {
                 "html-webpack-plugin": "^3.2.0",
@@ -34,6 +20,21 @@ module.exports = {
         dir.copyFolder(`${__dirname}/template/`, process.cwd())
     },
     configureWebpack: cfg => {
+        const webpack = require('webpack')
+        const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+        const CompressionPlugin = require('compression-webpack-plugin')
+        const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
+        const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+        const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+        const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+        const safePostCssParser = require('postcss-safe-parser')
+        const HtmlWebpackPlugin = require('html-webpack-plugin')
+        const PurifyCSS = require('purifycss-webpack')
+        const PreloadWebpackPlugin = require('preload-webpack-plugin')
+        const TerserPlugin = require('terser-webpack-plugin')
+        const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin')
+        const glob = require('glob-all')
+
         let config = cfg.config
 
         config

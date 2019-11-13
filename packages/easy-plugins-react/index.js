@@ -17,7 +17,7 @@ module.exports = {
             {"react-dom": "^16.11.0"},
             {"react-router-dom": "^5.1.2"}
         ])
-        dir.copyFolder('./template/', process.cwd())
+        dir.copyFolder(`${__dirname}/template/`, process.cwd())
     },
     configureWebpack: cfg => {
         let config = cfg.config

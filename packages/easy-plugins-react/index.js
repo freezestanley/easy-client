@@ -28,7 +28,7 @@ module.exports = {
                 .add('./src/index.js')
                 .end()
             .output
-                .path(path.resolve(__dirname, '../dist'))
+                .path(path.resolve(process.cwd(), './dist'))
                 .filename('[name].[hash:8].js')
                 // .publicPath()
                 .library('other')

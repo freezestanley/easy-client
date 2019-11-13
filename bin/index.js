@@ -45,15 +45,21 @@ program
   .command('init')
   .description('静态扫描')
   .action((e) => {
-    const result = utils.readerZarc(true)
+    const result = utils.init()
   })
 
 program
   .command('dev')
-  .description('静态扫描')
+  .description('start development')
   .action((e) => {
-    
-    const result = utils.readerZarc(false)
+    const result = utils.development()
+  })
+
+program
+  .command('build')
+  .description('build application')
+  .action((e) => {
+    const result = utils.application()
   })
 
 program.parse(process.argv)

@@ -10,6 +10,7 @@ module.exports = {
         config.module.rules.delete('sass')
         config.module.rule('sass')
         .test(/\.s[ac]ss$/i)
+
        if (config.mode === 'application') {
             config.module.rule('sass')
                 .use('mini')
@@ -28,6 +29,7 @@ module.exports = {
                 .use('style-loader')
                 .loader('style-loader').end()
         }
+        
         config.module.rule('sass').use('css')
             .loader('css-loader')
             .end()

@@ -10,7 +10,7 @@ module.exports = {
         config.module.rules.delete('less')
         config.module.rule('less')
             .test(/\.less$/)
-       if (config.mode === 'application') {
+       if (process.env.NODE_ENV === 'application') {
             config.module.rule('less')
                 .use('mini')
                 .loader(require("mini-css-extract-plugin").loader).options({
@@ -22,6 +22,17 @@ module.exports = {
                     }
                 }
                 }).end()
+            
+            config.plugin('MiniCssExtractPlugin')
+                .use(require("mini-css-extract-plugin"), [{
+                    filename: "[name].[contenthash:8].css",
+                    chunkFilename: "[name].[contenthash:8].css"
+                }]).end()
+                .plugin('OptimizeCssAssetsPlugin')
+                .use(require('optimize-css-assets-webpack-plugin'), [{ 
+                    cssProcessorOptions: { 
+                    parser: require('postcss-safe-parser')
+                }}]).end()
         
         } else {
             config.module.rule('less')
@@ -67,16 +78,7 @@ module.exports = {
             })
             .end()
 
-        config.plugin('MiniCssExtractPlugin')
-            .use(require("mini-css-extract-plugin"), [{
-                filename: "[name].[contenthash:8].css",
-                chunkFilename: "[name].[contenthash:8].css"
-            }]).end()
-        .plugin('OptimizeCssAssetsPlugin')
-            .use(require('optimize-css-assets-webpack-plugin'), [{ 
-                cssProcessorOptions: { 
-                parser: require('postcss-safe-parser')
-            }}]).end()
+        
 
 
         // console.log(config.toString())

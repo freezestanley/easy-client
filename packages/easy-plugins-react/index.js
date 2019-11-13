@@ -128,16 +128,16 @@ module.exports = {
                     path.resolve(process.cwd(), './src/*.js')
                     ])
                 }]).end()
-                .plugin('MiniCssExtractPlugin')
-                .use(MiniCssExtractPlugin, [{
-                    filename: "[name].[contenthash:8].css",
-                    chunkFilename: "[name].[contenthash:8].css"
-                }]).end()
-                .plugin('OptimizeCssAssetsPlugin')
-                .use(OptimizeCssAssetsPlugin, [{ 
-                    cssProcessorOptions: { 
-                    parser: safePostCssParser
-                    } }]).end()
+                // .plugin('MiniCssExtractPlugin')
+                // .use(MiniCssExtractPlugin, [{
+                //     filename: "[name].[contenthash:8].css",
+                //     chunkFilename: "[name].[contenthash:8].css"
+                // }]).end()
+                // .plugin('OptimizeCssAssetsPlugin')
+                // .use(OptimizeCssAssetsPlugin, [{ 
+                //     cssProcessorOptions: { 
+                //     parser: safePostCssParser
+                //     } }]).end()
                 .plugin('NamedModulesPlugin')
                 .use(webpack.NamedModulesPlugin).end()
                 .plugin('clean')

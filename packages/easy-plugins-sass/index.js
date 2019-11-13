@@ -23,13 +23,24 @@ module.exports = {
                     }
                 }
                 }).end()
-        
+
+            config.plugin('MiniCssExtractPlugin')
+                .use(require("mini-css-extract-plugin"), [{
+                    filename: "[name].[contenthash:8].css",
+                    chunkFilename: "[name].[contenthash:8].css"
+                }]).end()
+            .plugin('OptimizeCssAssetsPlugin')
+                .use(require('optimize-css-assets-webpack-plugin'), [{ 
+                    cssProcessorOptions: { 
+                    parser: require('postcss-safe-parser')
+                }}]).end()
+                
         } else {
             config.module.rule('sass')
                 .use('style-loader')
                 .loader('style-loader').end()
         }
-        
+
         config.module.rule('sass').use('css')
             .loader('css-loader')
             .end()
@@ -69,16 +80,7 @@ module.exports = {
             })
             .end()
 
-        config.plugin('MiniCssExtractPlugin')
-            .use(require("mini-css-extract-plugin"), [{
-                filename: "[name].[contenthash:8].css",
-                chunkFilename: "[name].[contenthash:8].css"
-            }]).end()
-        .plugin('OptimizeCssAssetsPlugin')
-            .use(require('optimize-css-assets-webpack-plugin'), [{ 
-                cssProcessorOptions: { 
-                parser: require('postcss-safe-parser')
-            }}]).end()
+        
 
 
         // console.log('========')

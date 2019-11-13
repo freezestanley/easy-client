@@ -9,7 +9,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
+  "devDependencies": {
     "file-loader": "^4.2.0",
     "url-loader": "^2.2.0"
   }

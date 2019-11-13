@@ -9,7 +9,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
+  "devDependencies": {
     "ejs": "^2.7.1",
     "eslint": "^6.6.0",
     "eslint-friendly-formatter": "^4.0.1",

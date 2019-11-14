@@ -25,16 +25,12 @@ module.exports = {
         const CompressionPlugin = require('compression-webpack-plugin')
         const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
         const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-        const MiniCssExtractPlugin = require("mini-css-extract-plugin")
         const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
-        const safePostCssParser = require('postcss-safe-parser')
         const HtmlWebpackPlugin = require('html-webpack-plugin')
-        const PurifyCSS = require('purifycss-webpack')
-        const PreloadWebpackPlugin = require('preload-webpack-plugin')
         const TerserPlugin = require('terser-webpack-plugin')
         const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin')
         const glob = require('glob-all')
-
+        const PurgecssPlugin = require('purgecss-webpack-plugin')
         let config = cfg.config
 
         config
@@ -118,11 +114,9 @@ module.exports = {
                     threshold: 10240,
                     minRatio: 0.7
                 }]).end()
-                .plugin('PurifyCSS')
-                .use(PurifyCSS, [{
-                    paths: glob.sync([
-                    path.resolve(process.cwd(), './src/*.js')
-                    ])
+                .plugin('PurgecssPlugin')
+                .use(PurgecssPlugin, [{ 
+                    paths: glob.sync(`${process.cwd()}/src/asset/less/components/**/*`,  { nodir: true })
                 }]).end()
                 // .plugin('MiniCssExtractPlugin')
                 // .use(MiniCssExtractPlugin, [{

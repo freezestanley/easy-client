@@ -149,22 +149,21 @@ module.exports = {
                     .namedChunks(true)
                     .runtimeChunk({name: 'runtime'})
                     .splitChunks({
-                    minSize: 3000,
-                    minChunks: 1,
-                    maxAsyncRequests: 5,
-                    maxInitialRequests: 3,
-                    name: false,
-                    cacheGroups: {
-                        vendor: {
-                        test: /[\\/]node_modules[\\/]/,
-                        name: 'vendor',
-                        chunks: 'initial',
-                        reuseExistingChunk: true
+                        minSize: 3000,
+                        minChunks: 1,
+                        maxAsyncRequests: 5,
+                        maxInitialRequests: 3,
+                        name: false,
+                        cacheGroups: {
+                            vendor: {
+                            test: /[\\/]node_modules[\\/]/,
+                            name: 'vendor',
+                            chunks: 'initial',
+                            reuseExistingChunk: true
+                            }
                         }
-                    }
                     })
                     .removeEmptyChunks(true)
-
         }
     }
 }

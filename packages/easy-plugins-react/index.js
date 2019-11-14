@@ -61,7 +61,7 @@ module.exports = {
                 {},
                 {
                     inject: true,
-                    template: path.resolve(process.cwd(), './index.html')
+                    template: path.resolve(process.cwd(), './public/index.html')
                 }
             )
             ]).end()
@@ -83,7 +83,7 @@ module.exports = {
                     {},
                     {
                         inject: true,
-                        template: path.resolve(process.cwd(), './index.html')
+                        template: path.resolve(process.cwd(), './public/index.html')
                     },
                     {
                         minify: {

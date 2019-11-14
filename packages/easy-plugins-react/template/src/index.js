@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.less';
-import './other.less';
+import './asset/less/index.less';
+import './asset/less/other.less';
 
 const Chat = () => (
   <div>

@@ -101,11 +101,6 @@ module.exports = {
                     }
                     )
                 ]).end()
-                .plugin('PreloadWebpackPlugin')
-                .use(PreloadWebpackPlugin, [{
-                    rel: 'preload',
-                    as: 'script'
-                }]).end()
                 .plugin('ScriptExtHtmlWebpackPlugin')
                 .use(ScriptExtHtmlWebpackPlugin, [{
                     preload: /\.js$/,

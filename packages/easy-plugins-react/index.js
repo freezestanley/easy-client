@@ -112,6 +112,8 @@ module.exports = {
                 .plugin('Compression')
                 .use(CompressionPlugin, [{
                     algorithm: 'gzip',
+                    test: /\.(js|css|html|svg)$/,
+                    compressionOptions: { level: 11 },
                     threshold: 10240,
                     minRatio: 0.8
                 }]).end()

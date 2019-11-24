@@ -31,6 +31,7 @@ module.exports = {
         const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin')
         const glob = require('glob-all')
         const PurgecssPlugin = require('purgecss-webpack-plugin')
+        const safePostCssParser = require('postcss-safe-parser')
         let config = cfg.config
 
         config
@@ -112,12 +113,12 @@ module.exports = {
                 .use(CompressionPlugin, [{
                     algorithm: 'gzip',
                     threshold: 10240,
-                    minRatio: 0.7
+                    minRatio: 0.8
                 }]).end()
-                .plugin('PurgecssPlugin')
-                .use(PurgecssPlugin, [{ 
-                    paths: glob.sync(`${process.cwd()}/src/asset/less/components/**/*`,  { nodir: true })
-                }]).end()
+                // .plugin('PurgecssPlugin')
+                // .use(PurgecssPlugin, [{ 
+                //     paths: glob.sync(`${process.cwd()}/src/asset/less/components/**/*`,  { nodir: true })
+                // }]).end()
                 // .plugin('MiniCssExtractPlugin')
                 // .use(MiniCssExtractPlugin, [{
                 //     filename: "[name].[contenthash:8].css",
@@ -132,19 +133,48 @@ module.exports = {
                 .use(webpack.NamedModulesPlugin).end()
                 .plugin('clean')
                 .use(CleanWebpackPlugin).end()
-                .plugin('BundleAnalyzerPlugin')
-                .use(BundleAnalyzerPlugin)
-                .end()
-
-
-
+                // .plugin('BundleAnalyzerPlugin')
+                // .use(BundleAnalyzerPlugin)
+                // .end()
                 config.optimization
                     .minimize(true)
-                    .minimizer('OptimizeCssAssetsPlugin')
-                    .use(OptimizeCssAssetsPlugin, [{ cssProcessorOptions: { safe: true } }])
-                    .end()
                     .minimizer('TerserPlugin')
-                    .use(TerserPlugin)
+                    .use(TerserPlugin, [{
+                        terserOptions: {
+                            parse: {
+                                ecma: 8,
+                            },
+                            parallel: true, // 开启多进程压缩
+                            cache: true,
+                            compress: {
+                                ecma: 5,
+                                warnings: false,
+                                comparisons: false,
+                                inline: 2,
+                              },
+                            mangle: {
+                                safari10: true,
+                              },
+                            keep_classnames: true,
+                            keep_fnames: true,
+                            drop_debugger: false,
+                            drop_console: false,
+                            output: {
+                                ecma: 5,
+                                comments: true,
+                                ascii_only: true,
+                            }
+                        },
+                        extractComments: false,
+                    }])
+                    .end()
+                    .minimizer('OptimizeCssAssetsPlugin')
+                    .use(OptimizeCssAssetsPlugin, [{ 
+                        cssProcessorOptions: { 
+                            parser: safePostCssParser,
+                            safe: true 
+                        } 
+                    }])
                     .end()
                     .namedChunks(true)
                     .runtimeChunk({name: 'runtime'})
@@ -156,10 +186,10 @@ module.exports = {
                         name: false,
                         cacheGroups: {
                             vendor: {
-                            test: /[\\/]node_modules[\\/]/,
-                            name: 'vendor',
-                            chunks: 'initial',
-                            reuseExistingChunk: true
+                                test: /[\\/]node_modules[\\/]/,
+                                name: 'vendor',
+                                chunks: 'initial',
+                                reuseExistingChunk: true
                             }
                         }
                     })

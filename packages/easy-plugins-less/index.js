@@ -10,7 +10,7 @@ module.exports = {
         config.module.rules.delete('less')
         config.module.rule('less')
             .test(/\.less$/)
-       if (process.env.NODE_ENV === 'application') {
+    //    if (process.env.NODE_ENV === 'application') {
             config.module.rule('less')
                 .use('mini')
                 .loader(require("mini-css-extract-plugin").loader).options({
@@ -34,11 +34,11 @@ module.exports = {
                     parser: require('postcss-safe-parser')
                 }}]).end()
         
-        } else {
-            config.module.rule('less')
-                .use('style-loader')
-                .loader('style-loader').end()
-        }
+        // } else {
+        //     config.module.rule('less')
+        //         .use('style-loader')
+        //         .loader('style-loader').end()
+        // }
         config.module.rule('less').use('css')
             .loader('css-loader')
             .end()
